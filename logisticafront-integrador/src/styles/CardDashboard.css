@@ -1,0 +1,36 @@
+
+
+.dashboard-card {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0px 2px 8px rgba(0,0,0,0.1);
+  padding: 16px;
+  width: 300px;
+  box-sizing: border-box;
+  min-height: 300px; /* altura mínima para mostrar gráfico */
+  display: flex;
+  flex-direction:column;
+  justify-content: center;
+}
+
+/* Opcional: ajustar altura para pantallas grandes */
+@media (min-width: 1200px) {
+  .dashboard-card {
+    min-height: 350px;
+  }
+}
+
+/* Loading centrado */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 60vh;
+  gap: 16px;
+}
+
+/* Grid de estadísticas centrado y con separación */
+.dashboard-stats {
+  margin-bottom: 16px;
+}

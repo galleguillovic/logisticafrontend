@@ -1,0 +1,29 @@
+.orders-header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.orders-header-left {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+.orders-header-title {
+  font-weight: 600;
+}
+
+.orders-header-search {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  width: 100%;
+}
+
+.orders-header-filters {
+  margin-left: 16px;
+}

@@ -1,0 +1,31 @@
+.filters-drawer-container {
+  width: 360px;
+  padding: 16px;
+}
+
+.filters-title {
+  margin-bottom: 4px;
+}
+
+.filters-subtitle {
+  color: #6b7280; /* color secundario similar a text.secondary */
+  margin-bottom: 8px;
+}
+
+.filters-divider {
+  margin-bottom: 16px;
+}
+
+.filters-divider-y {
+  margin: 16px 0;
+}
+
+.filters-section-title {
+  margin-bottom: 8px;
+}
+
+.filters-buttons {
+  display: flex;
+  gap: 8px;
+  justify-content: space-between;
+}

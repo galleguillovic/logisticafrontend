@@ -1,0 +1,33 @@
+
+.order-form-paper {
+  padding: 24px;
+}
+
+.order-form-title {
+  margin-bottom: 16px;
+  font-weight: 600;
+}
+
+.order-form-stack > .MuiTextField-root {
+  margin-bottom: 16px;
+}
+
+.order-form-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .order-form-paper {
+    padding: 16px;
+  }
+
+  .order-form-stack > .MuiTextField-root {
+    margin-bottom: 12px;
+  }
+
+  .order-form-buttons {
+    flex-direction: column;
+  }
+}

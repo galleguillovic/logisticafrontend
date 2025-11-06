@@ -1,0 +1,44 @@
+.orders-table-container {
+  margin-top: 16px;
+}
+
+.orders-table-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.orders-table-status-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+/* Colores por estado */
+.orders-table-status-dot.entregado {
+  background-color: #4caf50;
+}
+
+.orders-table-status-dot.en-transito {
+  background-color: #ffb300;
+}
+
+.orders-table-status-dot.pendiente {
+  background-color: #29b6f6;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .orders-table-container table {
+    font-size: 0.85rem;
+  }
+
+  .orders-table-container th,
+  .orders-table-container td {
+    padding: 4px 8px;
+  }
+
+  .orders-table-status span {
+    font-size: 0.85rem;
+  }
+}

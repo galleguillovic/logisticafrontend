@@ -1,0 +1,43 @@
+.order-detail-container {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  flex-wrap: wrap; /* permite que las columnas bajen en pantallas pequeñas */
+}
+
+.order-detail-info {
+  flex: 1 1 300px; /* ocupa el ancho disponible, mínimo 300px */
+}
+
+.order-detail-image {
+  flex: 0 0 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.order-detail-image img {
+  max-width: 380px;
+  height: 270px;
+}
+
+.order-detail-buttons {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* Responsive: apilar columnas en pantallas pequeñas */
+@media (max-width: 600px) {
+  .order-detail-container {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .order-detail-buttons {
+    justify-content: flex-start;
+  }
+}
+  .order-detail-image img {
+    width: 150px; /* más pequeña en móvil */
+  }
