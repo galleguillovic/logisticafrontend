@@ -6,10 +6,10 @@ import Dashboard from './pages/Dashboard';
 import OrderDetailPage from './pages/OrderDetailPage';
 import OrderFormPage from './pages/OrderFormPage';
 
-export default function App() {
+export default function App({ toggleTheme, isDarkMode }) {
   return (
     <BrowserRouter>
-      <NavBar />
+      <NavBar toggleTheme={toggleTheme} isDarkMode={isDarkMode} />
       <Toolbar sx={{ minHeight: { xs: 96, sm: 64 } }} />
       <Container maxWidth="lg" sx={{ mt: 2 }}>
         <Routes>

@@ -1,21 +1,19 @@
 import api from './api';
 
-/** Obtener listado de órdenes (params opcionales para filtros/paginación) */
+/* Obtener listado de órdenes */
 export const getOrdenes = async (params = {}) => {
   const res = await api.get('/ordenes', { params });
   return res.data;
 };
 
-/** Obtener una orden por id */
+/* Obtener una orden por id */
 export const getOrden = async (id) => {
   if (!id) throw new Error('getOrden: id es requerido');
   const res = await api.get(`/ordenes/${id}`);
   return res.data;
 };
 
-/** Crear una nueva orden
- * payload ejemplo: { destino, contenido, estado, categoria, peso, repartidor }
- */
+/* Crear una nueva orden */
 export const createOrden = async (payload) => {
   const res = await api.post('/ordenes', payload);
   return res.data;
@@ -35,13 +33,12 @@ export const deleteOrden = async (id) => {
   return res.data;
 };
 
-/** Obtener estadísticas por estado: devuelve [{ estado, cantidad }, ...] */
+/** Obtener estadísticas por estado */
 export const getEstadisticas = async () => {
   const res = await api.get('/ordenes/estadisticas/estados');
   return res.data;
 };
 
-/** Helper safe (opcional): devuleve { data, error } */
 export const safe = async (fn, ...args) => {
   try {
     const data = await fn(...args);

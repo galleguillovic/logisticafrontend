@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { Paper, Typography, Stack, Button } from '@mui/material';
+import { Paper, Typography, Stack, Button, useTheme } from '@mui/material';
 import * as service from '../services/ordenesService';
 import { format } from 'date-fns';
 import { useSnackbar } from 'notistack';
@@ -25,6 +25,8 @@ export default function OrderDetailPage() {
   const [orden, setOrden] = useState(null);
   const [loading, setLoading] = useState(true);
 
+  const theme = useTheme();
+
   useEffect(() => {
     let mounted = true;
     async function load() {
@@ -44,17 +46,27 @@ export default function OrderDetailPage() {
     return () => { mounted = false; };
   }, [id, enqueueSnackbar]);
 
-  if (loading) return <Typography>Cargando...</Typography>;
-  if (!orden) return <Typography>No se encontró la orden.</Typography>;
+  if (loading) return (
+    <Typography color={theme.palette.text.primary}>Cargando...</Typography>
+  );
+  if (!orden) return (
+    <Typography color={theme.palette.text.primary}>No se encontró la orden.</Typography>
+  );
 
-  // Para definir imagen según estado
   const estadoImg = orden.estado === 'Pendiente' ? PendienteImg
                     : orden.estado === 'En tránsito' ? EnTransitoImg
                     : orden.estado === 'Entregado' ? EntregadoImg
                     : null;
 
   return (
-    <Paper sx={{ p: 3 }}>
+    <Paper
+      sx={{
+        p: 3,
+        backgroundColor: theme.palette.background.paper,
+        color: theme.palette.text.primary,
+        border: `1px solid ${theme.palette.divider}`,
+      }}
+    >
       <div className="order-detail-container">
         {/* Columna izquierda: info */}
         <Stack spacing={1} className="order-detail-info">
@@ -78,8 +90,24 @@ export default function OrderDetailPage() {
 
       {/* Botones por debajo */}
       <div className="order-detail-buttons">
-        <Button variant="outlined" onClick={() => navigate(-1)}>Volver</Button>
-        <Button variant="contained" onClick={() => navigate(`/editar/${orden._id}`)}>Editar</Button>
+        <Button
+          variant="outlined"
+          onClick={() => navigate(-1)}
+          sx={{
+            color: theme.palette.text.primary,
+            borderColor: theme.palette.divider,
+            mr: 1
+          }}
+        >
+          Volver
+        </Button>
+        <Button
+          variant="contained"
+          onClick={() => navigate(`/editar/${orden._id}`)}
+          sx={{ color: theme.palette.getContrastText(theme.palette.primary.main) }}
+        >
+          Editar
+        </Button>
       </div>
     </Paper>
   );

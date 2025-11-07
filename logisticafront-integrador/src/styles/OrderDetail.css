@@ -2,11 +2,11 @@
   display: flex;
   gap: 20px;
   align-items: flex-start;
-  flex-wrap: wrap; /* permite que las columnas bajen en pantallas pequeñas */
+  flex-wrap: wrap; 
 }
 
 .order-detail-info {
-  flex: 1 1 300px; /* ocupa el ancho disponible, mínimo 300px */
+  flex: 1 1 300px;
 }
 
 .order-detail-image {
@@ -28,7 +28,6 @@
   flex-wrap: wrap;
 }
 
-/* Responsive: apilar columnas en pantallas pequeñas */
 @media (max-width: 600px) {
   .order-detail-container {
     flex-direction: column;
@@ -39,5 +38,5 @@
   }
 }
   .order-detail-image img {
-    width: 150px; /* más pequeña en móvil */
+    width: 150px;
   }

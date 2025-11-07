@@ -4,6 +4,12 @@
   justify-content: space-between;
   gap: 16px;
   margin-bottom: 16px;
+  padding: 8px;
+  background: var(--oh-bg, transparent);
+  color: var(--oh-text, #000);
+  border-radius: 8px;
+  box-sizing: border-box;
+  border: 1px solid var(--oh-border, rgba(0,0,0,0.08));
 }
 
 .orders-header-left {
@@ -11,10 +17,13 @@
   flex-direction: column;
   gap: 8px;
   flex: 1;
+  min-width: 0; 
 }
 
 .orders-header-title {
   font-weight: 600;
+  color: var(--oh-text, #000);
+  margin: 0;
 }
 
 .orders-header-search {
@@ -26,4 +35,20 @@
 
 .orders-header-filters {
   margin-left: 16px;
+  display: flex;
+  align-items: center;
+}
+
+@media (max-width: 600px) {
+  .orders-header-container {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .orders-header-filters {
+    margin-left: 0;
+    display: flex;
+    justify-content: flex-end;
+  }
 }

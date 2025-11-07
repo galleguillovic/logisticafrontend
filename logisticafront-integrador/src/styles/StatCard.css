@@ -1,7 +1,8 @@
 .stat-card {
-  min-width: 220px;
-  border: 1px solid rgba(0,0,0,0.12);
+  min-width: 300px;
+  border: 1px solid var(--sc-border, rgba(0,0,0,0.12));
   border-radius: 8px;
+  overflow: hidden;
 }
 
 .stat-card-content {
@@ -13,26 +14,25 @@
 
 .stat-card-title {
   font-size: 0.875rem;
-  color: rgba(0,0,0,0.6);
   font-weight: 500;
+  color: var(--sc-title-color, rgba(0,0,0,0.6));
 }
 
 .stat-card-value {
-  font-size: 2rem;
+  font-size: 10rem;
   font-weight: 700;
+  color: var(--sc-value-color, inherit);
 }
 
 .stat-card-subtitle {
-  font-size: 0.75rem;
-  color: rgba(0,0,0,0.6);
+  font-size: 10rem;
+  color: var(--sc-subtitle-color, rgba(0,0,0,0.6));
 }
 
-/* Responsive: pantallas pequeñas */
 @media (max-width: 768px) {
   .stat-card {
     min-width: 160px;
   }
-
   .stat-card-value {
     font-size: 1.5rem;
   }

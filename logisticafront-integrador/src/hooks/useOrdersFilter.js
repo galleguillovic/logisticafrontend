@@ -1,7 +1,7 @@
 import { useState, useMemo, useCallback, useEffect, useRef } from 'react';
 import applyFilters from '../utils/filterOrders';
 
-// Hook para el estado de búsqueda, filtros y ordenamientos.
+// Estado de búsqueda, filtros y ordenamientos.
 export default function useOrdersFilter(rawOrders = []) {
   const [query, setQuery] = useState(''); 
   const [selectedEstados, setSelectedEstados] = useState([]); 
@@ -10,7 +10,7 @@ export default function useOrdersFilter(rawOrders = []) {
   const [selectedCategorias, setSelectedCategorias] = useState([]); 
   const [openDrawer, setOpenDrawer] = useState(false);
 
-  // Debounce simple para el query de búsqueda
+  // Query de búsqueda
   const [debouncedQuery, setDebouncedQuery] = useState(query);
   const debounceRef = useRef(null);
   useEffect(() => {
@@ -19,24 +19,19 @@ export default function useOrdersFilter(rawOrders = []) {
     return () => clearTimeout(debounceRef.current);
   }, [query]);
 
-  // Callback para alternar selección de estados
+ 
   const toggleEstado = useCallback((estado) => {
     setSelectedEstados(prev => prev.includes(estado) ? prev.filter(s => s !== estado) : [...prev, estado]);
   }, []);
-
-  // Toggle categoria
   const toggleCategoria = useCallback((cat) => {
     setSelectedCategorias(prev => prev.includes(cat) ? prev.filter(c => c !== cat) : [...prev, cat]);
   }, []);
-
   const clearFilters = useCallback(() => {
     setSelectedEstados([]);
     setSelectedCategorias([]);
     setWeightOrder(null);
     setDateOrder(null);
   }, []);
-
-  // Lista filtrada/ordenada memorizada
   const filtered = useMemo(() => {
     return applyFilters(rawOrders, {
       query: debouncedQuery,

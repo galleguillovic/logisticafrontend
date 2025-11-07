@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Box, CircularProgress, Typography } from '@mui/material';
+import { Grid, Box, CircularProgress, Typography, Paper, useTheme } from '@mui/material';
 import StatCard from '../components/StatCard';
 import StatusDonut from '../components/StatusDonut';
 import OrdersTable from '../components/OrdersTable';
@@ -12,6 +12,7 @@ import { useNavigate } from 'react-router-dom';
 import "../styles/CardDashboard.css";
 
 export default function Dashboard() {
+  const theme = useTheme();
   const { ordenes = [], loading = false, stats = [] } = useOrders();
   const { fetchOrdenes, fetchStats, deleteOrden } = useOrdersActions();
   const { enqueueSnackbar } = useSnackbar();
@@ -48,27 +49,59 @@ export default function Dashboard() {
 
   if (loading) {
     return (
-      <Box className="loading-container">
+      <Box
+        sx={{
+          minHeight: '80vh',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          backgroundColor: theme.palette.background.default,
+          color: theme.palette.text.primary
+        }}
+      >
         <CircularProgress />
-        <Typography variant="body1" color="text.secondary">Cargando datos...</Typography>
+        <Typography variant="body1" color="text.secondary" sx={{ mt: 1 }}>
+          Cargando datos...
+        </Typography>
       </Box>
     );
   }
 
   return (
-    <Box className="dashboard-page">
+    <Box
+      className="dashboard-page"
+      sx={{
+        backgroundColor: theme.palette.background.default,
+        color: theme.palette.text.primary,
+        minHeight: '100vh',
+        p: 2
+      }}
+    >
 
       {/* Estadísticas */}
       <Grid container spacing={2} className="dashboard-stats">
         <Grid xs={12} md={4}>
-          <div className="dashboard-card">
+          <Paper
+            sx={{
+              p: 1,
+              backgroundColor: theme.palette.background.paper,
+              borderColor: theme.palette.divider
+            }}
+          >
             <StatCard title="Órdenes (filtradas)" value={total} subtitle={`${total} registros`} />
-          </div>
+          </Paper>
         </Grid>
         <Grid xs={12} md={8}>
-          <div className="dashboard-card">
+          <Paper
+            sx={{
+              p: 1,
+              backgroundColor: theme.palette.background.paper,
+              borderColor: theme.palette.divider
+            }}
+          >
             <StatusDonut data={stats} />
-          </div>
+          </Paper>
         </Grid>
       </Grid>
 
@@ -81,7 +114,7 @@ export default function Dashboard() {
       />
 
       {/* Tabla con las ordenes filtradas */}
-      <Grid container>
+      <Grid container sx={{ mt: 2 }}>
         <Grid xs={12}>
           <OrdersTable
             ordenes={filteredOrders}

@@ -1,13 +1,12 @@
 .navbar {
-  background-color: #fff;
-  border-bottom: 1px solid #e0e0e0;
-  color: black;
+  background-color: var(--nav-bg, #fff);
+  border-bottom: 1px solid var(--nav-border, #e0e0e0);
+  color: var(--nav-text, #000);
 }
 
-/* Desktop / tablet: texto a la izq, botones a la der */
 .navbar-toolbar {
   display: flex;
-  justify-content: space-between; /* texto izquierda / botones derecha */
+  justify-content: space-between; 
   align-items: center;
   flex-direction: row;
   padding-left: 16px;
@@ -15,7 +14,6 @@
   gap: 8px;
 }
 
-/* Título principal (columna) */
 .navbar-title {
   display: flex;
   flex-direction: column;
@@ -24,23 +22,21 @@
 
 .navbar-title-main {
   font-weight: 700;
-  color: rgb(255, 255, 255);
+  color: var(--nav-text, #000);
   font-size: 1rem;
 }
 
 .navbar-title-sub {
-  color: #ffffff;
+  color: var(--nav-subtext, #666);
   font-size: 0.85rem;
 }
 
-/* Botones a la derecha */
 .navbar-buttons {
   display: flex;
   gap: 10px;
   align-items: center;
 }
 
-/* Estilo de los botones (usa !important para sobreescribir MUI si hace falta) */
 .navbar-button {
   border-radius: 16px !important;
   text-transform: none !important;
@@ -48,11 +44,10 @@
   min-width: 80px;
 }
 
-/* ------------------ Responsive: móvil ------------------ */
 @media (max-width: 600px) {
   .navbar-toolbar {
-    flex-direction: column;       
-    align-items: center;          /* ✅ centramos todo horizontalmente */
+    flex-direction: column;
+    align-items: center;
     padding-left: 12px;
     padding-right: 12px;
     padding-top: 8px;
@@ -61,7 +56,6 @@
     text-align: center;
   }
 
-  /* Ajuste de tamaño de títulos para móviles */
   .navbar-title-main {
     font-size: 0.98rem;
   }
@@ -73,8 +67,8 @@
     width: 100%;
     display: flex;
     gap: 8px;
-    justify-content: center;      /* ✅ centramos los botones */
-    flex-wrap: wrap;           /* si no hay espacio, pasan a la siguiente línea */
+    justify-content: center;
+    flex-wrap: wrap; 
   }
 
   .navbar-button {
@@ -85,7 +79,6 @@
   }
 }
 
-/* Opcional: para pantallas muy angostas, dejamos botones en 100% ancho */
 @media (max-width: 360px) {
   .navbar-button {
     min-width: 100%;

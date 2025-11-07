@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import {
-  Paper, Stack, TextField, Button, MenuItem, Typography, InputAdornment
-} from '@mui/material';
+import { Paper, Stack, TextField, Button, MenuItem, Typography, InputAdornment, useTheme} from '@mui/material';
 import { useSnackbar } from 'notistack';
 import { useOrdersActions } from '../hooks/useOrders';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
@@ -18,6 +16,7 @@ const ESTADOS = ['Pendiente', 'En tránsito', 'Entregado'];
 const CATEGORIAS = ['Documentos','Tecnología','Ropa y accesorios','Hogar y decoración','Alimentos y bebidas','Salud y belleza','Otros'];
 
 export default function OrderFormPage() {
+  const theme = useTheme();
   const { id } = useParams();
   const navigate = useNavigate();
   const { enqueueSnackbar } = useSnackbar();
@@ -97,64 +96,142 @@ export default function OrderFormPage() {
   }
 
   return (
-    <Paper className="order-form-paper">
-      <Typography variant="h6" className="order-form-title">
+    <Paper
+      className="order-form-paper"
+      sx={{
+        p: { xs: 2, sm: 3 },
+        backgroundColor: theme.palette.background.paper,
+        color: theme.palette.text.primary,
+        border: `1px solid ${theme.palette.divider}`,
+      }}
+      role="form"
+      aria-label={id ? "Formulario editar orden" : "Formulario crear orden"}
+    >
+      <Typography
+        variant="h6"
+        className="order-form-title"
+        sx={{ mb: 2, color: theme.palette.text.primary }}
+      >
         {id ? 'Editar orden' : 'Crear nueva orden'}
       </Typography>
-      <form onSubmit={handleSubmit}>
-        <Stack className="order-form-stack">
+
+      <form onSubmit={handleSubmit} noValidate>
+        <Stack className="order-form-stack" spacing={2}>
           <TextField
             label="Destino"
             value={form.destino}
             onChange={e => setField('destino', e.target.value)}
             required
-            InputProps={{ startAdornment: (<InputAdornment position="start"><LocalShippingIcon /></InputAdornment>) }}
+            fullWidth
+            variant="outlined"
+            InputProps={{
+              startAdornment: (<InputAdornment position="start"><LocalShippingIcon /></InputAdornment>)
+            }}
+            sx={{ backgroundColor: theme.palette.mode === 'light' ? '#fff' : theme.palette.background.paper }}
+            inputProps={{ 'aria-label': 'Destino' }}
+            autoComplete="off"
           />
+
           <TextField
             label="Contenido"
             value={form.contenido}
             onChange={e => setField('contenido', e.target.value)}
-            multiline rows={3} required
-            InputProps={{ startAdornment: (<InputAdornment position="start"><ContentPasteIcon /></InputAdornment>) }}
+            multiline rows={3}
+            required
+            fullWidth
+            variant="outlined"
+            InputProps={{
+              startAdornment: (<InputAdornment position="start"><ContentPasteIcon /></InputAdornment>)
+            }}
+            sx={{ backgroundColor: theme.palette.mode === 'light' ? '#fff' : theme.palette.background.paper }}
+            inputProps={{ 'aria-label': 'Contenido' }}
           />
+
           <TextField
-            select label="Estado"
+            select
+            label="Estado"
             value={form.estado}
             onChange={e => setField('estado', e.target.value)}
-            InputProps={{ startAdornment: (<InputAdornment position="start"><DisplaySettingsIcon /></InputAdornment>) }}
+            fullWidth
+            variant="outlined"
+            InputProps={{
+              startAdornment: (<InputAdornment position="start"><DisplaySettingsIcon /></InputAdornment>)
+            }}
+            sx={{ backgroundColor: theme.palette.mode === 'light' ? '#fff' : theme.palette.background.paper }}
+            inputProps={{ 'aria-label': 'Estado' }}
           >
             {ESTADOS.map(s => <MenuItem key={s} value={s}>{s}</MenuItem>)}
           </TextField>
+
           <TextField
-            select label="Categoría"
+            select
+            label="Categoría"
             value={form.categoria}
             onChange={e => setField('categoria', e.target.value)}
             required
-            InputProps={{ startAdornment: (<InputAdornment position="start"><CategoryIcon /></InputAdornment>) }}
+            fullWidth
+            variant="outlined"
+            InputProps={{
+              startAdornment: (<InputAdornment position="start"><CategoryIcon /></InputAdornment>)
+            }}
+            sx={{ backgroundColor: theme.palette.mode === 'light' ? '#fff' : theme.palette.background.paper }}
+            inputProps={{ 'aria-label': 'Categoría' }}
           >
             {CATEGORIAS.map(c => <MenuItem key={c} value={c}>{c}</MenuItem>)}
           </TextField>
+
           <TextField
             label="Peso (kg)"
             type="number"
-            inputProps={{ step: "0.01", min: "0.01" }}
+            inputProps={{ step: "0.01", min: "0.01", 'aria-label': 'Peso' }}
             value={form.peso}
             onChange={e => setField('peso', e.target.value)}
             required
-            InputProps={{ startAdornment: (<InputAdornment position="start"><ScaleIcon /></InputAdornment>) }}
+            fullWidth
+            variant="outlined"
+            InputProps={{
+              startAdornment: (<InputAdornment position="start"><ScaleIcon /></InputAdornment>)
+            }}
+            sx={{ backgroundColor: theme.palette.mode === 'light' ? '#fff' : theme.palette.background.paper }}
           />
+
           <TextField
             label="Repartidor"
             value={form.repartidor}
             onChange={e => setField('repartidor', e.target.value)}
-            InputProps={{ startAdornment: (<InputAdornment position="start"><PersonalInjuryIcon /></InputAdornment>) }}
+            fullWidth
+            variant="outlined"
+            InputProps={{
+              startAdornment: (<InputAdornment position="start"><PersonalInjuryIcon /></InputAdornment>)
+            }}
+            sx={{ backgroundColor: theme.palette.mode === 'light' ? '#fff' : theme.palette.background.paper }}
+            inputProps={{ 'aria-label': 'Repartidor' }}
           />
 
-          <Stack className="order-form-buttons">
-            <Button variant="contained" type="submit" disabled={loading}>
+          <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} mt={2} className="order-form-buttons">
+            <Button
+              variant="contained"
+              type="submit"
+              disabled={loading}
+              sx={{
+                color: theme.palette.getContrastText(theme.palette.primary.main),
+              }}
+              aria-label={id ? "Guardar orden" : "Crear orden"}
+            >
               {id ? 'Guardar' : 'Crear'}
             </Button>
-            <Button variant="outlined" onClick={() => navigate(-1)}>Cancelar</Button>
+
+            <Button
+              variant="outlined"
+              onClick={() => navigate(-1)}
+              sx={{
+                color: theme.palette.text.primary,
+                borderColor: theme.palette.divider,
+              }}
+              aria-label="Cancelar"
+            >
+              Cancelar
+            </Button>
           </Stack>
         </Stack>
       </form>

@@ -1,6 +1,6 @@
-
 .order-form-paper {
   padding: 24px;
+  box-sizing: border-box;
 }
 
 .order-form-title {
@@ -9,7 +9,7 @@
 }
 
 .order-form-stack > .MuiTextField-root {
-  margin-bottom: 16px;
+  margin-bottom: 0; 
 }
 
 .order-form-buttons {
@@ -17,7 +17,6 @@
   gap: 8px;
 }
 
-/* Responsive */
 @media (max-width: 768px) {
   .order-form-paper {
     padding: 16px;
